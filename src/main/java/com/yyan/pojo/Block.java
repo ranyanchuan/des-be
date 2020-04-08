@@ -8,21 +8,28 @@ import java.util.Date;
 @Data
 public class Block {
 
-    public String hash; // 当前节点hash
-    public String previousHash; // 前节点hash
-    private String data; // 数据
+    public String id; // 区块 id
+    public String userId; // 创建人
+    public String preHash; // 前节点hash
+    private String fileUrl; //  加密文件路径
     private long timeStamp; //时间搓 1/1/1970.
-    private int nonce;
+    private int nonce; // 随机数
+    public String hash; // 当前节点hash
+    public Integer height; // 区块高度
+
+    private Date createTime;  // 创建时间
+    private Date updateTime;  // 修改时间
 
 
     /**
      * 初始化区块
+     *
      * @param data
-     * @param previousHash
+     * @param preHash
      */
-    public Block(String data, String previousHash) {
-        this.data = data;
-        this.previousHash = previousHash;
+    public Block(String data, String preHash) {
+        this.fileUrl = data;
+        this.preHash = preHash;
         this.timeStamp = new Date().getTime();
         this.hash = calculateHash(); // 当前节点hash
     }
@@ -30,14 +37,15 @@ public class Block {
 
     /**
      * 计算hash值
+     *
      * @return hash
      */
     public String calculateHash() {
         String calculatedhash = StringUtil.applySha256(
-                previousHash +
+                preHash +
                         Long.toString(timeStamp) +
                         Integer.toString(nonce) +
-                        data
+                        fileUrl
         );
         return calculatedhash;
     }

@@ -70,7 +70,7 @@ public class TestBlock {
                 return false;
             }
             //比较前hash 与 注册hash
-            if (!previousBlock.hash.equals(currentBlock.previousHash)) {
+            if (!previousBlock.hash.equals(currentBlock.preHash)) {
                 System.out.println("前区块 hash 不相等");
                 return false;
             }

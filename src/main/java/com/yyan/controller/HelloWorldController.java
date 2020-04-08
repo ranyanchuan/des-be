@@ -9,7 +9,7 @@ import java.util.Map;
 
 // 注入 bean
 @Controller
-public class Hello {
+public class HelloWorldController {
 
     // 将 url 与方法绑定
     @RequestMapping("/hello")
