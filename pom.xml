@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<modelVersion>4.0.0</modelVersion>
+
+
+<groupId>com.yyan</groupId>
+<artifactId>des-be</artifactId>
+<version>1.0-SNAPSHOT</version>
+<name>des-be</name>
+<description>基于区块链电子存证系统</description>
+
+
+<!--springboot 父工程-->
+<parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>2.1.13.RELEASE</version>
+    <relativePath/> <!-- lookup parent from repository -->
+</parent>
+
+
+<properties>
+    <!--jdk 版本号-->
+    <java.version>1.8</java.version>
+    <!--thymeleaf 版本号-->
+    <!--<thymeleaf.version>3.0.2.RELEASE</thymeleaf.version>-->
+</properties>
+
+<dependencies>
+
+    <!--springboot aop -->
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-aop</artifactId>
+    </dependency>
+
+    <!--springboot 启动器 -->
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter</artifactId>
+    </dependency>
+    <!--springboot 启动器 web-->
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+
+    <!--springboot 启动器 测试-->
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-test</artifactId>
+        <scope>test</scope>
+        <exclusions>
+            <exclusion>
+                <groupId>org.junit.vintage</groupId>
+                <artifactId>junit-vintage-engine</artifactId>
+            </exclusion>
+        </exclusions>
+    </dependency>
+
+    <!-- jsp 视图 jstl-->
+    <dependency>
+        <groupId>javax.servlet</groupId>
+        <artifactId>jstl</artifactId>
+    </dependency>
+    <!-- jsp 视图 jasper-->
+    <dependency>
+        <groupId>org.apache.tomcat.embed</groupId>
+        <artifactId>tomcat-embed-jasper</artifactId>
+        <scope>provided</scope>
+    </dependency>
+
+    <!--freemaker 视图启动器的坐标-->
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-freemarker</artifactId>
+    </dependency>
+
+    <!--thymeleaf 视图启动器的坐标-->
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-thymeleaf</artifactId>
+    </dependency>
+
+    <!--mybatis 数据持久层 -->
+    <dependency>
+        <groupId>org.mybatis.spring.boot</groupId>
+        <artifactId>mybatis-spring-boot-starter</artifactId>
+        <version>2.1.1</version>
+    </dependency>
+
+    <!--mysql 数据库驱动-->
+    <dependency>
+        <groupId>mysql</groupId>
+        <artifactId>mysql-connector-java</artifactId>
+    </dependency>
+    <!--数据库连接池-->
+    <dependency>
+        <groupId>com.alibaba</groupId>
+        <artifactId>druid</artifactId>
+        <version>1.1.16</version>
+    </dependency>
+
+
+    <!--devtools 热部署-->
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-devtools</artifactId>
+        <!--依赖只在本项目中存在-->
+        <optional>true</optional>
+    </dependency>
+
+
+    <!--springboot boot缓存支持是驱动器-->
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-cache</artifactId>
+    </dependency>
+    <!--Ehcache 坐标 需要在resources下配置 ehcache.xml 文件-->
+    <dependency>
+        <groupId>net.sf.ehcache</groupId>
+        <artifactId>ehcache</artifactId>
+    </dependency>
+
+    <!---->
+    <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <optional>true</optional>
+    </dependency>
+
+    <dependency>
+        <groupId>com.alibaba</groupId>
+        <artifactId>fastjson</artifactId>
+        <version>1.2.49</version>
+    </dependency>
+
+
+</dependencies>
+
+<!--spring boot 插件 开发态用-->
+<build>
+    <plugins>
+        <plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+            <!--热部署 必须使用命令启动  spring-boot:run 不推荐 -->
+            <!--<dependencies>-->
+            <!--<dependency>-->
+            <!--<groupId>org.springframework</groupId>-->
+            <!--<artifactId>springloaded</artifactId>-->
+            <!--</dependency>-->
+            <!--</dependencies>-->
+
+        </plugin>
+
+    </plugins>
+</build>
+
+
+</project>
