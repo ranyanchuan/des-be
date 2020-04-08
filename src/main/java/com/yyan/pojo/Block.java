@@ -8,22 +8,30 @@ import java.util.Date;
 @Data
 public class Block {
 
-    public String hash;
-    public String previousHash;
-    private String data; //our data will be a simple message.
-    private long timeStamp; //as number of milliseconds since 1/1/1970.
+    public String hash; // 当前节点hash
+    public String previousHash; // 前节点hash
+    private String data; // 数据
+    private long timeStamp; //时间搓 1/1/1970.
     private int nonce;
 
-    //Block Constructor.
+
+    /**
+     * 初始化区块
+     * @param data
+     * @param previousHash
+     */
     public Block(String data, String previousHash) {
         this.data = data;
         this.previousHash = previousHash;
         this.timeStamp = new Date().getTime();
-
-        this.hash = calculateHash(); //Making sure we do this after we set the other values.
+        this.hash = calculateHash(); // 当前节点hash
     }
 
-    //Calculate new hash based on blocks contents
+
+    /**
+     * 计算hash值
+     * @return hash
+     */
     public String calculateHash() {
         String calculatedhash = StringUtil.applySha256(
                 previousHash +
@@ -33,6 +41,7 @@ public class Block {
         );
         return calculatedhash;
     }
+
 
     public void mineBlock(int difficulty) {
         String target = new String(new char[difficulty]).replace('\0', '0'); //Create a string with difficulty * "0"
