@@ -1,12 +1,29 @@
 package com.yyan.utils;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cglib.beans.BeanMap;
 
+import javax.servlet.http.HttpSession;
 import java.util.*;
 
 
 public class BaseServiceImpl {
+
+
+    @Autowired
+    private HttpSession session;
+
+
+    /**
+     * 获取用户 id
+     *
+     * @return
+     */
+    public String getUserIdSession() {
+        return (String) session.getAttribute("userId");
+    }
+
 
     //  查询成功数据组装
     public Map<String, Object> queryListSuccess(Object data, Integer count, Map param) {

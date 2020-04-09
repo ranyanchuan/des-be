@@ -11,7 +11,7 @@ import java.util.Map;
 
 public class BlockServiceImpl extends BaseServiceImpl implements BlockService {
 
-    public static int difficulty = 5;
+    public static int difficulty = 5; // 挖矿难度系数
 
     @Autowired
     private BlockDao blockDao;
@@ -20,6 +20,8 @@ public class BlockServiceImpl extends BaseServiceImpl implements BlockService {
     public void insertUser(Block block) {
         // todo 获取主链
         // 添加区块
+        String userId=getUserIdSession();//
+
         this.blockDao.insertBlock(block);
     }
 
