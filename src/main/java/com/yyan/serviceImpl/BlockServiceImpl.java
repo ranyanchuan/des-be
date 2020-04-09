@@ -4,10 +4,12 @@ import com.yyan.dao.BlockDao;
 import com.yyan.pojo.Block;
 import com.yyan.service.BlockService;
 import com.yyan.utils.BaseServiceImpl;
+import com.yyan.utils.FileUtil;
 import com.yyan.utils.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.FileNotFoundException;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -15,7 +17,7 @@ import java.util.Map;
 @Service
 public class BlockServiceImpl extends BaseServiceImpl implements BlockService {
 
-    public static int difficulty = 5; // 挖矿难度系数
+    public static int difficulty = 2; // 挖矿难度系数 5
 
     @Autowired
     private BlockDao blockDao;
@@ -37,21 +39,25 @@ public class BlockServiceImpl extends BaseServiceImpl implements BlockService {
             block.setPreHash(endBlock.getHash());
         }
 
+
+        String filePath = new String("src/main/resources/static/images/18.jpeg");
+        block.setFileUrl(filePath); //  设置文件路径
         block.setTimeStamp((new Date()).getTime());
 
-        String hash=calHash(block);
-        String target = new String(new char[difficulty]).replace('\0', '0'); //Create a string with difficulty * "0"
 
-        Integer nonce=0;
+        String target = new String(new char[difficulty]).replace('\0', '0'); //Create a string with difficulty * "0"
+        Integer nonce = 0;
+        String base64File = FileUtil.encryptToBase64(filePath);
+        String hash = calHash(block, base64File);
+
         // 工作量证明 挖矿
         while (!hash.substring(0, difficulty).equals(target)) {
             nonce++;
             block.setNonce(nonce);
-            hash =calHash(block);
+            hash = calHash(block, base64File);
+            System.out.println("hash=====" + hash);
         }
         block.setHash(hash);
-
-        System.out.println("block" + block.toString());
         // 添加区块
         this.blockDao.insertBlock(block);
 
@@ -63,18 +69,17 @@ public class BlockServiceImpl extends BaseServiceImpl implements BlockService {
      *
      * @return hash
      */
-    public String calHash(Block block) {
+    public String calHash(Block block, String base64File) {
 
         return StringUtil.applySha256(
                 block.getPreHash() +
                         Long.toString(block.getTimeStamp()) +
                         Integer.toString(block.getNonce()) +
-                        block.getFileUrl()
+                        base64File
+
         );
 
     }
-
-
 
 
     @Override

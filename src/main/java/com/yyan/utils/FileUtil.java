@@ -1,7 +1,6 @@
 package com.yyan.utils;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.nio.file.Files;
@@ -10,22 +9,6 @@ import java.security.MessageDigest;
 import java.util.Base64;
 
 public class FileUtil {
-
-    public static void main(String[] args) {
-        try {
-            //此处我测试的是我本机jdk源码文件的MD5值
-            String filePath = "C:\\Program Files\\Java\\jdk1.7.0_45\\src.zip";
-            FileInputStream fis = new FileInputStream(filePath);
-            String md5Hashcode = fileHashCode(fis);
-
-            System.out.println(md5Hashcode + "：文件的md5值");
-
-            //System.out.println(-100 & 0xff);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-
 
     /**
      * java获取文件的SHA-256值
@@ -56,7 +39,7 @@ public class FileUtil {
     }
 
 
-    public String encryptToBase64(String filePath) {
+    public static String encryptToBase64(String filePath) {
         if (filePath == null) {
             return null;
         }
