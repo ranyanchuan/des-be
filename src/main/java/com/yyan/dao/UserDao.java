@@ -3,6 +3,8 @@ package com.yyan.dao;
 import com.yyan.pojo.User;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.Map;
+
 @Mapper
 public interface UserDao {
 
@@ -10,6 +12,6 @@ public interface UserDao {
 
     void updateUser(User user);
 
-    User login(String phone, String password);
+    User login(Map<String,Object> map);
 
 }

@@ -32,6 +32,7 @@ public class Block {
         this.preHash = preHash;
         this.timeStamp = new Date().getTime();
         this.hash = calculateHash(); // 当前节点hash
+        System.out.println("this.hash"+this.hash);
     }
 
 
@@ -50,6 +51,10 @@ public class Block {
         return calculatedhash;
     }
 
+
+    /**
+     * 工作量证明
+     */
 
     public void mineBlock(int difficulty) {
         String target = new String(new char[difficulty]).replace('\0', '0'); //Create a string with difficulty * "0"

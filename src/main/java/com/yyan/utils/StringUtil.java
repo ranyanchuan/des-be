@@ -41,6 +41,31 @@ public class StringUtil {
     }
 
 
+    /**
+     * 对字符串进行md5
+     * @param input
+     * @return
+     */
+    public static String md5Code(String input) {
+        try {
+            MessageDigest digest = MessageDigest.getInstance("MD5");
+            //将sha256应用于我们的输入
+            byte[] hash = digest.digest(input.getBytes("UTF-8"));
+            StringBuffer hexString = new StringBuffer(); // 它将包含hash作为hexidecima
+
+            for (int i = 0; i < hash.length; i++) {
+                String hex = Integer.toHexString(0xff & hash[i]);
+                if (hex.length() == 1) hexString.append('0');
+                hexString.append(hex);
+            }
+            return hexString.toString();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+
 
 //    public static void main(String[] args) {
 //        try {

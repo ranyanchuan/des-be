@@ -39,11 +39,14 @@ public class UserController extends BaseController {
      */
     @RequestMapping("/login")
     @ResponseBody
-    public Map<String, Object> selectUser(@RequestParam String phone, @RequestParam String password) {
+    public Map<String, Object> selectUser(@RequestParam String email, @RequestParam String password) {
         try {
-            User user = this.userService.login(phone, password);
-            // todo 生成token
-            return this.buildSuccess(user);
+
+            Map map = this.userService.login(email, password);
+
+            System.out.println("map"+map.toString());
+
+            return this.buildSuccess(map);
         } catch (Exception exp) {
             return this.buildError(exp.getMessage());
         }

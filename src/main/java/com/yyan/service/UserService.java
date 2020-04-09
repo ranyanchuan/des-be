@@ -2,11 +2,13 @@ package com.yyan.service;
 
 import com.yyan.pojo.User;
 
+import java.util.Map;
+
 public interface UserService {
 
     void insertUser(User user);
 
     void updateUser(User user);
 
-    User login(String phone, String password);
+    Map login(String email, String password);
 }
