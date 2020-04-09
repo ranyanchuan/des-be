@@ -3,7 +3,10 @@ package com.yyan.utils;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cglib.beans.BeanMap;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.*;
 
@@ -13,6 +16,15 @@ public class BaseServiceImpl {
 
     @Autowired
     private HttpSession session;
+
+    @Autowired
+    private HttpServletRequest request;
+
+
+    public String getUserIdToken() {
+        String token = request.getHeader("token");// 获取 token
+        return JwtUtil.getUserId(token);
+    }
 
 
     /**

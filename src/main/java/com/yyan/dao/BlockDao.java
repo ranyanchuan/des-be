@@ -15,4 +15,9 @@ public interface BlockDao {
     Map<String, Object> selectListBlock(Map map);
     Integer countListBlock(Map map); // 查询区块数量
 
+
+    // 获取最后一行数据
+    Block selectEndBlock();
+
+
 }

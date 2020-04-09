@@ -1,7 +1,9 @@
 package com.yyan.filter;
 
 import com.alibaba.fastjson.JSON;
+import com.yyan.utils.JwtUtil;
 import com.yyan.utils.ResultCodeEnum;
+
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
@@ -52,7 +54,9 @@ public class FirstFilter implements Filter {
         }
 
         String token = req.getHeader("token");// 获取 token
-        if (null == token || token.isEmpty()) {  // token 校验失败
+        Boolean status = JwtUtil.verify(token);
+
+        if (null == token || token.isEmpty() || !status) {  // token 校验失败
             Map map = new HashMap();
             ResultCodeEnum resultCode = ResultCodeEnum.USER_ERROR;
             map.put("code", Integer.parseInt(resultCode.getCode()));
