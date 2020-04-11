@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 // 注入 bean
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/admin/user")
 public class UserController extends BaseController {
 
     @Autowired

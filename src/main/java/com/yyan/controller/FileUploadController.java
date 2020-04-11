@@ -13,7 +13,7 @@ import java.util.Map;
  */
 // 该类下的方法的返回值会自动做 json 转换， 相当于  @ResponseBody + @Controller
 @RestController
-@RequestMapping("/file")
+@RequestMapping("/admin/file")
 
 public class FileUploadController {
 
