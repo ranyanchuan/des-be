@@ -44,11 +44,12 @@ public class FirstFilter implements Filter {
         // todo 不就进行token校验白名单
         String[] urls = {
                 "/hello",
-                "/user/login"
+                "/api/user/login"
         };
 
-        String currentUrl = req.getRequestURI();
+        String currentUrl = req.getRequestURI().split("\\?")[0];
         if (Arrays.asList(urls).contains(currentUrl)) { // 过滤非验证路由
+            System.out.println("yyyy"+currentUrl);
             chain.doFilter(request, response);
             return;
         }

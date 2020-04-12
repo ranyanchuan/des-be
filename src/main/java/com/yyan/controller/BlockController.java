@@ -24,10 +24,24 @@ public class BlockController extends BaseController {
      */
     @RequestMapping("/add")
     @ResponseBody
-    public Map<String, Object> addUser(@RequestBody Block block) {
+    public Map<String, Object> addBlock(@RequestBody Block block) {
         try {
-            this.blockService.insertUser(block);
+            this.blockService.insertBlock(block);
             return this.buildSuccess();
+        } catch (Exception exp) {
+            return this.buildError(exp.getMessage());
+        }
+    }
+
+
+    /**
+     *
+     */
+    @RequestMapping("/get")
+    @ResponseBody
+    public Map<String, Object> getBlock(@RequestBody Map map) {
+        try {
+            return this.buildSuccess(this.blockService.selectListBlock(map));
         } catch (Exception exp) {
             return this.buildError(exp.getMessage());
         }

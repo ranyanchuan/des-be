@@ -23,7 +23,7 @@ public class BlockServiceImpl extends BaseServiceImpl implements BlockService {
     private BlockDao blockDao;
 
     @Override
-    public void insertUser(Block block) {
+    public void insertBlock(Block block) {
 
         // 获取主链
         Block endBlock = blockDao.selectEndBlock();

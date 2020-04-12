@@ -9,7 +9,7 @@ public interface BlockService {
 
 
     // 添加区块
-    void insertUser(Block block) throws FileNotFoundException;
+    void insertBlock(Block block) throws FileNotFoundException;
 
     // 查询区块
     Map<String, Object> selectListBlock(Map map); // 查询区块
