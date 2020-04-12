@@ -44,28 +44,32 @@ public class FirstFilter implements Filter {
         // todo 不就进行token校验白名单
         String[] urls = {
                 "/hello",
-                "/api/user/login"
+                "/api/user/login",
+                "/api/file/upload",
         };
 
-        String currentUrl = req.getRequestURI().split("\\?")[0];
-        if (Arrays.asList(urls).contains(currentUrl)) { // 过滤非验证路由
-            System.out.println("yyyy"+currentUrl);
-            chain.doFilter(request, response);
-            return;
-        }
 
-        String token = req.getHeader("token");// 获取 token
-        Boolean status = JwtUtil.verify(token);
+//        chain.doFilter(request, response);
 
-        if (null == token || token.isEmpty() || !status) {  // token 校验失败
-            Map map = new HashMap();
-            ResultCodeEnum resultCode = ResultCodeEnum.USER_ERROR;
-            map.put("code", Integer.parseInt(resultCode.getCode()));
-            map.put("info", resultCode.getMessage());
-            PrintWriter writer = response.getWriter();
-            writer.write(JSON.toJSONString(map));
-            return;
-        }
+
+//        String currentUrl = req.getRequestURI().split("\\?")[0];
+//        if (Arrays.asList(urls).contains(currentUrl)) { // 过滤非验证路由
+//            chain.doFilter(request, response);
+//            return;
+//        }
+//
+//        String token = req.getHeader("token");// 获取 token
+//        Boolean status = JwtUtil.verify(token);
+//
+//        if (null == token || token.isEmpty() || !status) {  // token 校验失败
+//            Map map = new HashMap();
+//            ResultCodeEnum resultCode = ResultCodeEnum.USER_ERROR;
+//            map.put("code", Integer.parseInt(resultCode.getCode()));
+//            map.put("info", resultCode.getMessage());
+//            PrintWriter writer = response.getWriter();
+//            writer.write(JSON.toJSONString(map));
+//            return;
+//        }
 
         chain.doFilter(request, response); // token 校验 success
 

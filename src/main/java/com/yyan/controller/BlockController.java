@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/admin/block")
+@RequestMapping("/api/block")
 public class BlockController extends BaseController {
 
     @Autowired
