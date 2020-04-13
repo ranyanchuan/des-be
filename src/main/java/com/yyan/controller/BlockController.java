@@ -20,7 +20,7 @@ public class BlockController extends BaseController {
     private BlockServiceImpl blockService;
 
     /**
-     *
+     *添加区块
      */
     @RequestMapping("/insert")
     @ResponseBody
@@ -35,7 +35,7 @@ public class BlockController extends BaseController {
 
 
     /**
-     *
+     * 根据条件查询区块
      */
     @RequestMapping("/select")
     @ResponseBody
@@ -46,5 +46,20 @@ public class BlockController extends BaseController {
             return this.buildError(exp.getMessage());
         }
     }
+
+
+    /**
+     * 根据条件查询自己的区块
+     */
+    @RequestMapping("/self/select")
+    @ResponseBody
+    public Map<String, Object> getBlockSelf(@RequestBody Map map) {
+        try {
+            return this.buildSuccess(this.blockService.selectListBlockSelf(map));
+        } catch (Exception exp) {
+            return this.buildError(exp.getMessage());
+        }
+    }
+
 
 }

@@ -22,7 +22,7 @@ import java.util.UUID;
 public class FileUploadController {
 
 
-    public final static String UPLOAD_PATH_PREFIX = "";
+    public final static String UPLOAD_PATH_PREFIX = "/Users/person/des-be/src/main/resources/static/images/";
 
     /**
      * 批量文件上传
@@ -31,14 +31,12 @@ public class FileUploadController {
     // fileName 要与前端 input 的 name 保持一致
     public Map<String, Object> fileUpload(MultipartFile fileName, HttpServletRequest request) throws Exception {
 
-
         System.out.println("文件上传开始");
-
 
         String oldName = fileName.getOriginalFilename();
         String newName = UUID.randomUUID().toString() + oldName.substring(oldName.lastIndexOf("."), oldName.length());
 //        String realPath = new String("src/main/resources/static/images/" +newName);
-        String realPath = new String("/Users/person/des-be/src/main/resources/static/images/" + newName);
+        String realPath = new String(UPLOAD_PATH_PREFIX + newName);
         System.out.println(realPath);
         fileName.transferTo(new File(realPath));
 

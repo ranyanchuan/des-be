@@ -14,5 +14,8 @@ public interface BlockService {
     // 查询区块
     Map<String, Object> selectListBlock(Map map); // 查询区块
 
+    // 查询自己的区块
+    Map<String, Object> selectListBlockSelf(Map map); // 查询区块
+
 
 }

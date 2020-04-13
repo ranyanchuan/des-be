@@ -74,8 +74,6 @@ public class UserController extends BaseController {
     @ResponseBody
     public Map<String, Object> updateUser(@RequestBody User user) {
         try {
-
-            // todo  密码加密
             this.userService.updateUser(user);
             return this.buildSuccess();
         } catch (Exception exp) {
