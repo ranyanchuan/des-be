@@ -37,7 +37,6 @@ public class FirstFilter implements Filter {
 //
 //
 
-
         response.setCharacterEncoding("UTF-8");
         response.setContentType("application/json; charset=utf-8");
 
@@ -48,28 +47,24 @@ public class FirstFilter implements Filter {
                 "/api/file/upload",
         };
 
+        String currentUrl = req.getRequestURI().split("\\?")[0];
+        if (Arrays.asList(urls).contains(currentUrl)) { // 过滤非验证路由
+            chain.doFilter(request, response);
+            return;
+        }
 
-//        chain.doFilter(request, response);
+        String token = req.getHeader("token");// 获取 token
+        Boolean status = JwtUtil.verify(token);
 
-
-//        String currentUrl = req.getRequestURI().split("\\?")[0];
-//        if (Arrays.asList(urls).contains(currentUrl)) { // 过滤非验证路由
-//            chain.doFilter(request, response);
-//            return;
-//        }
-//
-//        String token = req.getHeader("token");// 获取 token
-//        Boolean status = JwtUtil.verify(token);
-//
-//        if (null == token || token.isEmpty() || !status) {  // token 校验失败
-//            Map map = new HashMap();
-//            ResultCodeEnum resultCode = ResultCodeEnum.USER_ERROR;
-//            map.put("code", Integer.parseInt(resultCode.getCode()));
-//            map.put("info", resultCode.getMessage());
-//            PrintWriter writer = response.getWriter();
-//            writer.write(JSON.toJSONString(map));
-//            return;
-//        }
+        if (null == token || token.isEmpty() || !status) {  // token 校验失败
+            Map map = new HashMap();
+            ResultCodeEnum resultCode = ResultCodeEnum.USER_ERROR;
+            map.put("code", Integer.parseInt(resultCode.getCode()));
+            map.put("info", resultCode.getMessage());
+            PrintWriter writer = response.getWriter();
+            writer.write(JSON.toJSONString(map));
+            return;
+        }
 
         chain.doFilter(request, response); // token 校验 success
 

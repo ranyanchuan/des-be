@@ -22,7 +22,7 @@ public class BlockController extends BaseController {
     /**
      *
      */
-    @RequestMapping("/add")
+    @RequestMapping("/insert")
     @ResponseBody
     public Map<String, Object> addBlock(@RequestBody Block block) {
         try {
@@ -37,7 +37,7 @@ public class BlockController extends BaseController {
     /**
      *
      */
-    @RequestMapping("/get")
+    @RequestMapping("/select")
     @ResponseBody
     public Map<String, Object> getBlock(@RequestBody Map map) {
         try {

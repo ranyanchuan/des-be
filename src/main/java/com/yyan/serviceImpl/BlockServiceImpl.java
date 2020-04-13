@@ -9,7 +9,6 @@ import com.yyan.utils.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.FileNotFoundException;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -39,11 +38,11 @@ public class BlockServiceImpl extends BaseServiceImpl implements BlockService {
             block.setPreHash(endBlock.getHash());
         }
 
+//        block.setFileUrl(filePath); //  设置文件路径
 
-        String filePath = new String("src/main/resources/static/images/18.jpeg");
-        block.setFileUrl(filePath); //  设置文件路径
+        // 设置访问路径
+        String filePath = new String("src/main/resources/static/images/" + block.getFileUrl());
         block.setTimeStamp((new Date()).getTime());
-
 
         String target = new String(new char[difficulty]).replace('\0', '0'); //Create a string with difficulty * "0"
         Integer nonce = 0;
@@ -85,7 +84,8 @@ public class BlockServiceImpl extends BaseServiceImpl implements BlockService {
     @Override
     public Map<String, Object> selectListBlock(Map map) {
 
-        List<Block> newList = (List<Block>) this.blockDao.selectListBlock(map);
+        List<Block> newList = this.blockDao.selectListBlock(checkPageSize(map));
+
         Integer count = this.blockDao.countListBlock(map);
         return this.queryListSuccess(newList, count, map); //查询成功
 

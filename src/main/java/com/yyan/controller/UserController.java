@@ -24,7 +24,7 @@ public class UserController extends BaseController {
     /**
      * 添加用户
      */
-    @RequestMapping("/add")
+    @RequestMapping("/insert")
     @ResponseBody
     public Map<String, Object> addUser(@RequestBody User user) {
         try {
@@ -42,18 +42,9 @@ public class UserController extends BaseController {
     @RequestMapping("/login")
     @ResponseBody
     public Map<String, Object> selectUser(HttpServletRequest request, @RequestParam String email, @RequestParam String password) {
-
-        System.out.println("xxxxx"+email+password);
-
         try {
-
-
             Map map = this.userService.login(email, password);
             request.getSession().setAttribute("userId", map.get("id"));
-
-            System.out.println("map" + map.toString());
-            System.out.println("userId" + request.getSession().getAttribute("userId"));
-
             return this.buildSuccess(map);
         } catch (Exception exp) {
             return this.buildError(exp.getMessage());

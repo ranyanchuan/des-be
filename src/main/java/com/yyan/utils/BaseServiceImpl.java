@@ -20,7 +20,6 @@ public class BaseServiceImpl {
     @Autowired
     private HttpServletRequest request;
 
-
     public String getUserIdToken() {
         String token = request.getHeader("token");// 获取 token
         return JwtUtil.getUserId(token);
@@ -80,6 +79,18 @@ public class BaseServiceImpl {
             newList.add(map);
         }
         return newList;
+    }
+
+
+    public Map checkPageSize(Map map) {
+
+        Integer size = map.get("size") != null ? (Integer) map.get("size") : 10;
+        Integer pageIndex = map.get("pageIndex") != null ? (Integer) map.get("pageIndex") : 0;
+        map.put("size", size);
+        map.put("pageIndex", pageIndex);
+        return map;
+
+
     }
 
 

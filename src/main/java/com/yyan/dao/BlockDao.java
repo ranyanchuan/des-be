@@ -3,6 +3,7 @@ package com.yyan.dao;
 import com.yyan.pojo.Block;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
 import java.util.Map;
 
 @Mapper
@@ -12,7 +13,7 @@ public interface BlockDao {
     void insertBlock(Block block);
 
     // 查询区块
-    Map<String, Object> selectListBlock(Map map);
+    List<Block> selectListBlock(Map map);
     Integer countListBlock(Map map); // 查询区块数量
 
 
