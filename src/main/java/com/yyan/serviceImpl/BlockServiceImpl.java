@@ -17,6 +17,7 @@ import java.util.Map;
 public class BlockServiceImpl extends BaseServiceImpl implements BlockService {
 
     public static int difficulty = 2; // 挖矿难度系数 5
+    public final static String IMG_PATH_PREFIX = "src/main/resources/static/images/";
 
     @Autowired
     private BlockDao blockDao;
@@ -38,10 +39,9 @@ public class BlockServiceImpl extends BaseServiceImpl implements BlockService {
             block.setPreHash(endBlock.getHash());
         }
 
-//        block.setFileUrl(filePath); //  设置文件路径
-
         // 设置访问路径
-        String filePath = new String("src/main/resources/static/images/" + block.getFileUrl());
+        String filePath = new String(IMG_PATH_PREFIX + block.getFileUrl());
+
         block.setTimeStamp((new Date()).getTime());
 
         String target = new String(new char[difficulty]).replace('\0', '0'); //Create a string with difficulty * "0"

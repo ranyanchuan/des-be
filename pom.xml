@@ -10,6 +10,7 @@
 <version>1.0-SNAPSHOT</version>
 <name>des-be</name>
 <description>基于区块链电子存证系统</description>
+    <packaging>war</packaging>
 
 
 <!--springboot 父工程-->
