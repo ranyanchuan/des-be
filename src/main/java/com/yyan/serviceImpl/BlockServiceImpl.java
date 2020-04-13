@@ -84,7 +84,7 @@ public class BlockServiceImpl extends BaseServiceImpl implements BlockService {
     @Override
     public Map<String, Object> selectListBlock(Map map) {
 
-        List<Block> newList = this.blockDao.selectListBlock(checkPageSize(map));
+        List<Map> newList = this.blockDao.selectListBlock(checkPageSize(map));
 
         Integer count = this.blockDao.countListBlock(map);
         return this.queryListSuccess(newList, count, map); //查询成功
@@ -94,7 +94,7 @@ public class BlockServiceImpl extends BaseServiceImpl implements BlockService {
     @Override
     public Map<String, Object> selectListBlockSelf(Map map) {
         map.put("userId", getUserIdToken()); //添加用户id
-        List<Block> newList = this.blockDao.selectListBlock(checkPageSize(map));
+        List<Map> newList = this.blockDao.selectListBlock(checkPageSize(map));
 
         Integer count = this.blockDao.countListBlock(map);
         return this.queryListSuccess(newList, count, map); //查询成功

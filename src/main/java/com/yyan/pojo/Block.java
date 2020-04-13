@@ -1,4 +1,5 @@
 package com.yyan.pojo;
+
 import lombok.Data;
 
 import java.util.Date;
@@ -18,6 +19,7 @@ public class Block {
 
     private Date createTime;  // 创建时间
     private Date updateTime;  // 修改时间
+    private User user;// 区块创建人
 
 
 //    /**

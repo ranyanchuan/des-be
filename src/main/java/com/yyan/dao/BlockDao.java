@@ -13,7 +13,7 @@ public interface BlockDao {
     void insertBlock(Block block);
 
     // 查询区块
-    List<Block> selectListBlock(Map map);
+    List<Map> selectListBlock(Map map);
     Integer countListBlock(Map map); // 查询区块数量
 
 
