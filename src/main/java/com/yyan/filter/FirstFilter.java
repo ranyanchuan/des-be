@@ -44,6 +44,7 @@ public class FirstFilter implements Filter {
                 "/hello",
                 "/api/user/login",
                 "/api/file/upload",
+                "/api/user/insert",
         };
 
         String currentUrl = req.getRequestURI().split("\\?")[0];

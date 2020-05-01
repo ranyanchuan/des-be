@@ -90,8 +90,6 @@ public class BaseServiceImpl {
         map.put("size", size);
         map.put("pageIndex", pageIndex);
         return map;
-
-
     }
 
 

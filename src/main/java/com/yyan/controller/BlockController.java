@@ -1,7 +1,6 @@
 package com.yyan.controller;
 
 import com.yyan.pojo.Block;
-import com.yyan.pojo.User;
 import com.yyan.serviceImpl.BlockServiceImpl;
 import com.yyan.utils.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
