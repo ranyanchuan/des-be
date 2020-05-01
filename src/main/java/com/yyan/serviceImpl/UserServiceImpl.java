@@ -36,6 +36,9 @@ public class UserServiceImpl extends BaseServiceImpl implements UserService {
      */
     @Override
     public void updateUser(User user) {
+        // 用户 id
+        String userId = getUserIdToken();
+        user.setId(userId);
         user.setPassword(StringUtil.md5Code(user.getPassword())); //对密码进行 md5
         userDao.updateUser(user);
     }
