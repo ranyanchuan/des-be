@@ -9,6 +9,7 @@ public class Block {
 
     public String id; // 区块 id
     public String userId; // 创建人
+    private String userName; //  加密文件路径
     public String preHash; // 前节点hash
     private String fileUrl; //  加密文件路径
     private long timeStamp; //时间搓 1/1/1970.

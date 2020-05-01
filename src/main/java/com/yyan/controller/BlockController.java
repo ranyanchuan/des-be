@@ -53,9 +53,12 @@ public class BlockController extends BaseController {
     @RequestMapping("/self/select")
     @ResponseBody
     public Map<String, Object> getBlockSelf(@RequestBody Map map) {
+        System.out.println("-------");
         try {
             return this.buildSuccess(this.blockService.selectListBlockSelf(map));
         } catch (Exception exp) {
+            System.out.println(exp);
+
             return this.buildError(exp.getMessage());
         }
     }

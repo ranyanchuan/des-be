@@ -21,7 +21,7 @@ public class BaseServiceImpl {
     private HttpServletRequest request;
 
     public String getUserIdToken() {
-        String token = request.getHeader("token");// 获取 token
+        String token = request.getHeader("Authorization");// 获取 token
         return JwtUtil.getUserId(token);
     }
 
@@ -39,7 +39,7 @@ public class BaseServiceImpl {
     //  查询成功数据组装
     public Map<String, Object> queryListSuccess(Object data, Integer count, Map param) {
         Map<String, Object> map = new HashMap<>();
-        map.put("data", data);
+        map.put("rows", data);
         map.put("pageIndex", param.get("pageIndex"));
         map.put("size", param.get("size"));
         map.put("count", count);

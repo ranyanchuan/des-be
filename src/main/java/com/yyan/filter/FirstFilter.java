@@ -45,6 +45,7 @@ public class FirstFilter implements Filter {
                 "/api/user/login",
                 "/api/file/upload",
                 "/api/user/insert",
+                "/api/block/select",
         };
 
         String currentUrl = req.getRequestURI().split("\\?")[0];
@@ -53,7 +54,8 @@ public class FirstFilter implements Filter {
             return;
         }
 
-        String token = req.getHeader("token");// 获取 token
+        String token = req.getHeader("Authorization");// 获取 token
+
         Boolean status = JwtUtil.verify(token);
 
         if (null == token || token.isEmpty() || !status) {  // token 校验失败

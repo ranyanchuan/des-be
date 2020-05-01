@@ -41,9 +41,9 @@ public class UserController extends BaseController {
      */
     @RequestMapping("/login")
     @ResponseBody
-    public Map<String, Object> selectUser(HttpServletRequest request, @RequestParam String email, @RequestParam String password) {
+    public Map<String, Object> selectUser(HttpServletRequest request,@RequestBody User user) {
         try {
-            Map map = this.userService.login(email, password);
+            Map map = this.userService.login(user.getEmail(), user.getPassword());
             request.getSession().setAttribute("userId", map.get("id"));
             return this.buildSuccess(map);
         } catch (Exception exp) {
