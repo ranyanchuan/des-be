@@ -93,7 +93,6 @@ public class BlockServiceImpl extends BaseServiceImpl implements BlockService {
 
     @Override
     public Map<String, Object> selectListBlockSelf(Map map) {
-        System.out.println("=====");
         map.put("userId", getUserIdToken()); //添加用户id
 
         List<Map> newList = this.blockDao.selectListBlock(checkPageSize(map));

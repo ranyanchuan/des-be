@@ -40,9 +40,9 @@ public class BaseServiceImpl {
     public Map<String, Object> queryListSuccess(Object data, Integer count, Map param) {
         Map<String, Object> map = new HashMap<>();
         map.put("rows", data);
-        map.put("pageIndex", param.get("pageIndex"));
-        map.put("size", param.get("size"));
-        map.put("count", count);
+        map.put("pageNumber", param.get("pageIndex"));
+        map.put("pageSize", param.get("size"));
+        map.put("total", count);
         return map;
     }
 
