@@ -36,46 +36,45 @@ public class FirstFilter implements Filter {
 //        rep.setHeader("Access-Control-Allow-Headers", "token,Origin, X-Requested-With, Content-Type, Accept");
 //
 //
-        response.setCharacterEncoding("UTF-8");
-        response.setContentType("application/json; charset=utf-8");
-
-        // todo 不就进行token校验白名单
-        String[] urls = {
-                "/hello",
-                "/images/",
-                "/api/user/login",
-                "/api/file/upload",
-                "/api/user/insert",
-                "/api/block/select",
-        };
-
-        String currentUrl = req.getRequestURI().split("\\?")[0];
-
-        for(String url:urls ){// 过滤非验证路由
-            if(currentUrl.startsWith(url)){
-            chain.doFilter(request, response);
-            return;
-            }
-        }
-
-        String token = req.getHeader("Authorization");// 获取 token
-
-        Boolean status = JwtUtil.verify(token);
-
-        if (null == token || token.isEmpty() || !status) {  // token 校验失败
-            Map map = new HashMap();
-            ResultCodeEnum resultCode = ResultCodeEnum.USER_ERROR;
-            map.put("code", Integer.parseInt(resultCode.getCode()));
-            map.put("info", resultCode.getMessage());
-            PrintWriter writer = response.getWriter();
-            writer.write(JSON.toJSONString(map));
-            return;
-        }
+//        response.setCharacterEncoding("UTF-8");
+//        response.setContentType("application/json; charset=utf-8");
+//
+//        // todo 不就进行token校验白名单
+//        String[] urls = {
+//                "/hello",
+//                "/images/",
+//                "/api/user/login",
+//                "/api/file/upload",
+//                "/api/user/insert",
+//                "/api/block/select",
+//        };
+//
+//        String currentUrl = req.getRequestURI().split("\\?")[0];
+//
+//        for(String url:urls ){// 过滤非验证路由
+//            if(currentUrl.startsWith(url)){
+//            chain.doFilter(request, response);
+//            return;
+//            }
+//        }
+//
+//        String token = req.getHeader("Authorization");// 获取 token
+//
+//        Boolean status = JwtUtil.verify(token);
+//
+//        if (null == token || token.isEmpty() || !status) {  // token 校验失败
+//            Map map = new HashMap();
+//            ResultCodeEnum resultCode = ResultCodeEnum.USER_ERROR;
+//            map.put("code", Integer.parseInt(resultCode.getCode()));
+//            map.put("info", resultCode.getMessage());
+//            PrintWriter writer = response.getWriter();
+//            writer.write(JSON.toJSONString(map));
+//            return;
+//        }
 
         chain.doFilter(request, response); // token 校验 success
 
 
     }
-
 
 }
